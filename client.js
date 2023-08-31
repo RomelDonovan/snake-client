@@ -9,24 +9,15 @@ const connect = () => {
 
   // interpret incoming data as text
   conn.setEncoding("utf8");
-  
-  conn.on("data", (data) => {
-    process.stdout.write(data);
-  });
 
   conn.on("connect", () => {
     console.log("Successfully connected to game server");
     conn.write(`Name: ROM`);
   });
 
-
-  conn.on("connect", (data) => {
-    conn.write("Move: up");
+  conn.on("data", (data) => {
+    process.stdout.write(data);
   });
-
-  setTimeout((data) => {
-    conn.write("Move: left");
-  }, 50);
 
   return conn;
 };
