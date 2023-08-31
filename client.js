@@ -31,7 +31,4 @@ const connect = () => {
   return conn;
 };
 
-console.log("Connecting ...");
-connect();
-
-module.exports = { connect };
+module.exports = connect;
