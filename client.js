@@ -9,15 +9,24 @@ const connect = () => {
 
   // interpret incoming data as text
   conn.setEncoding("utf8");
+  
+  conn.on("data", (data) => {
+    process.stdout.write(data);
+  });
 
   conn.on("connect", () => {
     console.log("Successfully connected to game server");
     conn.write(`Name: ROM`);
   });
 
-  conn.on("data", (data) => {
-    process.stdout.write(data);
+
+  conn.on("connect", (data) => {
+    conn.write("Move: up");
   });
+
+  setTimeout((data) => {
+    conn.write("Move: left");
+  }, 50);
 
   return conn;
 };
@@ -25,4 +34,4 @@ const connect = () => {
 console.log("Connecting ...");
 connect();
 
-module.exports = connect;
+module.exports = { connect };
