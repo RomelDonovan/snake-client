@@ -1,6 +1,6 @@
 // Stores the active TCP connection object.
 let connection;
-
+const { UP, LEFT, DOWN, RIGHT } = require("./constants");
 // setup interface to handle user input from stdin
 const setupInput = (conn) => {
   connection = conn;
@@ -17,16 +17,16 @@ const handleUserInput = (key) => {
     process.exit();
   }
   if (key === "w") {
-    connection.write("Move: up");
+    connection.write(UP);
   }
   if (key === "a") {
-    connection.write("Move: left");
+    connection.write(LEFT);
   }
   if (key === 's') {
-    connection.write("Move: down");
+    connection.write(DOWN);
   }
   if (key === "d") {
-    connection.write("Move: right");
+    connection.write(RIGHT);
   }
   if (key === "g") {
     connection.write("Say: GG");
@@ -39,4 +39,4 @@ const handleUserInput = (key) => {
   }
 };
 
-module.exports = setupInput
+module.exports = setupInput;
